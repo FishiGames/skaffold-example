@@ -1,0 +1,22 @@
+apiVersion: skaffold/v4beta8
+kind: Config
+metadata:
+  name: skaffold-example
+build:
+  artifacts:
+  - image: backend
+    context: backend
+    docker:
+      dockerfile: Dockerfile
+  - image: frontend
+    context: frontend
+    docker:
+      dockerfile: Dockerfile
+manifests:
+  rawYaml:
+  - backend/deployment.yaml
+  - frontend/deployment.yaml
+portForward:
+- resourceType: service
+  resourceName: frontend
+  port: 4000

@@ -1,0 +1,8 @@
+<h1>Message from server</h1>
+<ng-container *ngIf="serverMessage; else notReceived">
+    <h2>{{serverMessage.answer}}</h2>
+</ng-container>
+
+<ng-template #notReceived>
+    <h2>No message received</h2>
+</ng-template>
