@@ -1,5 +1,6 @@
 use axum::{Json, Router, routing::get, serve};
 use serde::{Deserialize, Serialize};
+use sysinfo::System;
 use tokio::net::TcpListener;
 use tracing_subscriber::fmt::init;
 
@@ -22,6 +23,6 @@ struct Message {
 async fn text() -> Json<Message> {
     println!("Received request for text");
     Json(Message {
-        answer: "Hello, Skaffold!".to_string()
+        answer: format!("Hello from {}!", System::host_name().unwrap())
     })
 }
